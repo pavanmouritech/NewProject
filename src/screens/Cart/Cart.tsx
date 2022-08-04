@@ -4,8 +4,8 @@ import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import { useDispatch, useSelector } from 'react-redux';
 import { removeFavorite } from '../../redux/action/action';
 
-export default function Favorite() {
-  const { favorites } = useSelector((state) => state.moviesReducer);
+export default function CartScreen() {
+  const { cart } = useSelector((state) => state.moviesReducer);
   const dispatch = useDispatch();
   const removeFromFavorites = (movie) => dispatch(removeFavorite(movie));
 
@@ -16,11 +16,11 @@ export default function Favorite() {
     <TouchableOpacity style={{ flex: 1, marginTop: 44, paddingHorizontal: 20 }}>
       <Text style={{ fontSize: 22 }}>Favorites</Text>
       <View style={{ flex: 1, marginTop: 8 }}>
-        {favorites.length === 0 ? (
+        {cart.length === 0 ? (
           <Text style={{ color: '#010101', fontSize: 18 }}>Add a movie to the list.</Text>
         ) : (
           <FlatList
-            data={favorites}
+            data={cart}
             keyExtractor={(item) => item.id.toString()}
             showsVerticalScrollIndicator={false}
             renderItem={({ item }) => {

@@ -1,8 +1,9 @@
-import {GET_MOVIES,ADD_FAVORITE_ITEM,REMOVE_FAVORITE_ITEM} from '../action/action';
+import {GET_MOVIES,ADD_FAVORITE_ITEM,REMOVE_FAVORITE_ITEM, CART_ITEM} from '../action/action';
 
 const initialState = {
   movies: [],
   favorites: [],
+  cart:[],
 };
 function moviesReducer(state = initialState, action) {
   switch (action.type) {
@@ -10,6 +11,8 @@ function moviesReducer(state = initialState, action) {
       return {...state, movies: action.payload};
     case ADD_FAVORITE_ITEM:
       return {...state, favorites: [...state.favorites, action.payload]};
+    case CART_ITEM:
+        return {...state, cart: [...state.cart, action.payload]};  
     case REMOVE_FAVORITE_ITEM:
       return {
         ...state,

@@ -3,7 +3,7 @@ import axios from "axios";
 export const GET_MOVIES = 'GET_MOVIES';
 export const ADD_FAVORITE_ITEM = 'ADD_FAVORITE_ITEM';
 export const REMOVE_FAVORITE_ITEM = 'REMOVE_FAVORITE_ITEM';
-
+export const CART_ITEM = 'CART_ITEM';
 
 const BASE_URL = `https://fakestoreapi.com/products`;
 
@@ -38,3 +38,11 @@ export const getMovies = () => {
       payload: movie,
     });
   };
+  export const CartFavorite = movie => dispatch => {
+    dispatch({
+      type: CART_ITEM,
+      payload: movie,
+    });
+  };
+
+

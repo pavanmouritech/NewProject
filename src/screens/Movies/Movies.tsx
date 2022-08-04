@@ -3,18 +3,20 @@ import {View,Text,TouchableOpacity, FlatList,Image, SafeAreaView} from 'react-na
 import { getMovies, addFavorite } from "../../redux/action/action";
 import { useSelector,useDispatch } from "react-redux";
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
+import { useNavigation } from "@react-navigation/native";
 
 
 export default function Movies () {
+  
     const {movies} = useSelector(state => state.moviesReducer);
     const dispatch = useDispatch();
     const fetchMovies = () => dispatch(getMovies());
     const addToFavorites = movie => dispatch(addFavorite(movie));
+    const navigation = useNavigation();
 
     const handleAddFavorite = movie => {
         addToFavorites(movie);
     };
-    
   
     useEffect(()=>{
         fetchMovies();
@@ -24,22 +26,22 @@ export default function Movies () {
     <SafeAreaView style={{flex:1,margin:10,padding:10}}>  
       <View style={{flexDirection:'row',marginTop: 20,justifyContent:'space-between'}}>
         <Text style={{fontSize: 22}}>Popular Movies</Text>
-            <Text>
+            <TouchableOpacity onPress={()=>(cart)}>
               
             <MaterialIcons
                 color="rgb(77, 255, 255)"
                 size={32}
                 name="add-shopping-cart"
             /> 
-            </Text>
+            </TouchableOpacity>
       </View>   
   <View style={{flex: 1, marginTop: 12}}>
       <FlatList
         data={movies}
-        keyExtractor={item => item.id.toString()}
+        keyExtractor={item => item.id}
         renderItem={({item}) => {
           return (
-            <View style={{marginVertical: 12}}>
+            <TouchableOpacity style={{marginVertical: 12}}  onPress={() =>navigation.navigate('CartScreen',handleAddFavorite(item))}>
               <View style={{flexDirection: 'row', flex: 1}}>
             
                  <Image style={{width: 100, height: 150, borderRadius: 10}} source={{ uri: item.image }} />
@@ -62,8 +64,7 @@ export default function Movies () {
                     />
                     </TouchableOpacity>
                     
-                    <TouchableOpacity
-                      onPress={() => handleAddFavorite(item)}>
+                    <TouchableOpacity>
                       <MaterialIcons
                         color="orange"
                         size={32}
@@ -73,7 +74,7 @@ export default function Movies () {
                     </View>
                     </View>
                   </View>
-                </View>
+                </TouchableOpacity>
           );  
         }}
         showsVerticalScrollIndicator={false}
