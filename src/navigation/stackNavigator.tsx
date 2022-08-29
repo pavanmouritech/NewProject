@@ -9,7 +9,7 @@ function MyStack() {
   return (
     <NavigationContainer>    
         <Stack.Navigator>
-            <Stack.Screen name="Home" component={CartScreen} />
+            <Stack.Screen name="CartScreen" component={CartScreen} />
         </Stack.Navigator>
     </NavigationContainer>
 

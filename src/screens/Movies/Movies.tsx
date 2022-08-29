@@ -4,6 +4,7 @@ import { getMovies, addFavorite } from "../../redux/action/action";
 import { useSelector,useDispatch } from "react-redux";
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import { useNavigation } from "@react-navigation/native";
+import CartScreen from "../Cart/Cart";
 
 
 export default function Movies () {
@@ -15,7 +16,8 @@ export default function Movies () {
     const navigation = useNavigation();
 
     const handleAddFavorite = movie => {
-        addToFavorites(movie);
+        addToFavorites(movie),
+        navigation.navigate(CartScreen)
     };
   
     useEffect(()=>{
@@ -26,7 +28,7 @@ export default function Movies () {
     <SafeAreaView style={{flex:1,margin:10,padding:10}}>  
       <View style={{flexDirection:'row',marginTop: 20,justifyContent:'space-between'}}>
         <Text style={{fontSize: 22}}>Popular Movies</Text>
-            <TouchableOpacity onPress={()=>(cart)}>
+            <TouchableOpacity onPress={()=>('')}>
               
             <MaterialIcons
                 color="rgb(77, 255, 255)"
@@ -41,7 +43,7 @@ export default function Movies () {
         keyExtractor={item => item.id}
         renderItem={({item}) => {
           return (
-            <TouchableOpacity style={{marginVertical: 12}}  onPress={() =>navigation.navigate('CartScreen',handleAddFavorite(item))}>
+            <TouchableOpacity style={{marginVertical: 12}}  onPress={() =>(handleAddFavorite(item))}>
               <View style={{flexDirection: 'row', flex: 1}}>
             
                  <Image style={{width: 100, height: 150, borderRadius: 10}} source={{ uri: item.image }} />

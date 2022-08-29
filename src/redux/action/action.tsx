@@ -7,6 +7,7 @@ export const CART_ITEM = 'CART_ITEM';
 
 const BASE_URL = `https://fakestoreapi.com/products`;
 
+// const BASE_URL = `https://fakestoreapi.free.beeceptor.com/restaurant`;
 
 export const getMovies = () => {
     try {
@@ -44,5 +45,3 @@ export const getMovies = () => {
       payload: movie,
     });
   };
-
-

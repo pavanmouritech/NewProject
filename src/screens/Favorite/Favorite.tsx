@@ -4,7 +4,7 @@ import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import { useDispatch, useSelector } from 'react-redux';
 import { removeFavorite } from '../../redux/action/action';
 
-export default function Favorite() {
+export default function Favorite({navigation}) {
   const { favorites } = useSelector((state) => state.moviesReducer);
   const dispatch = useDispatch();
   const removeFromFavorites = (movie) => dispatch(removeFavorite(movie));
