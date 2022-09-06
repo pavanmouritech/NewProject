@@ -4,7 +4,6 @@ import { getMovies, addFavorite } from "../../redux/action/action";
 import { useSelector,useDispatch } from "react-redux";
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import { useNavigation } from "@react-navigation/native";
-import CartScreen from "../Cart/Cart";
 
 
 export default function Movies () {
@@ -16,8 +15,7 @@ export default function Movies () {
     const navigation = useNavigation();
 
     const handleAddFavorite = movie => {
-        addToFavorites(movie),
-        navigation.navigate(CartScreen)
+        addToFavorites(movie);
     };
   
     useEffect(()=>{
